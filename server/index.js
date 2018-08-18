@@ -1,20 +1,18 @@
 const Koa = require('koa')
-const logger = require('koa-logger')
-const session = require('koa-session')
 const app = new Koa()
+const views = require('koa-views')
+const path = require('path')
 
-app.keys = ['jinghong']
+app.use(views(path.join(__dirname, './views'), {
+  extension: 'pug'
+}))
 
-app.use(logger())
-app.use(session(app))
-
-app.use(ctx => {
-  if (ctx.path === '/favicon.ico') return 
-
-  let n = ctx.session.views || 0
-  ctx.session.views = ++ n
-  ctx.body = n + ' views'
-
+app.use(async (ctx) => {
+  await ctx.render('index', {
+    you: '世界',
+    me: 'jinghong'
+  })
 })
+
 
 app.listen(2333)
