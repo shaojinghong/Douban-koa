@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -w src --exec babel-node --presets env",
-    "build": "rimraf dist && babel src -d dist --presets env",
+    "start": "nodemon server/index.js",
+    "build": "rimraf dist && babel server -d dist --presets env",
     "production": "node dist"
   },
   "author": "",
@@ -13,7 +13,12 @@
   "dependencies": {
     "koa": "^2.5.2",
     "koa-logger": "^3.2.0",
-    "koa-session": "^5.8.2"
+    "koa-session": "^5.8.2",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4",
+    "koa2-cors": "^2.0.6",
+    "pug": "^2.0.3",
+    "puppeteer": "^1.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
