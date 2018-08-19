@@ -18,7 +18,9 @@
     "koa-views": "^6.1.4",
     "koa2-cors": "^2.0.6",
     "pug": "^2.0.3",
-    "puppeteer": "^1.7.0"
+    "puppeteer": "^1.7.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
