@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 const path = require('path')
 const base = `https://movie.douban.com/subject/`
-const doubanId = '30156096'
+const doubanId = '26985127'
 const videoBase = `https://movie.douban.com/trailer/234383/#content`  
 
 const sleep = time => new Promise(resolve => {
@@ -13,12 +13,14 @@ const sleep = time => new Promise(resolve => {
 
   const browser = await puppeteer.launch({
     args: ['--no-sandbox'],
+    // chromium.app的绝对路径
     executablePath: path.join(__dirname, '../../chromium/Chromium.app/Contents/MacOS/Chromium'),
     dumpio: false
   })
 
   const page = await browser.newPage()
   await page.goto(base + doubanId, {
+    // 当触发下面事件时，navigation被认为成功执行了
     waitUntil: 'networkidle2'
   })
 
@@ -59,7 +61,7 @@ const sleep = time => new Promise(resolve => {
     })
   }
 
-  const data = {
+    const data = {
     video,
     doubanId,
     cover: result.cover
@@ -72,6 +74,5 @@ const sleep = time => new Promise(resolve => {
 
   process.send({data})
   process.exit(0);
-
 
 })()

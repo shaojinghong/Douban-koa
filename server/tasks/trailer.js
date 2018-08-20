@@ -1,6 +1,3 @@
-// http://vt1.doubanio.com/201808192048/18d414d2b32aef6ef401619215fe32d0/view/movie/M/402340383.mp4
-
-
 
 const childProcess = require('child_process')
 const path = require('path')
@@ -33,6 +30,7 @@ const path = require('path')
 
   // 当一个子进程使用 process.send() 发送消息时会触发 'message' 事件。
   child.on('message', data => {
+    // https://img3.doubanio.com/view/photo/l_ratio_poster/public/p2530772196.jpg
     console.log(data)
   })
 
