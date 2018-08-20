@@ -29,6 +29,7 @@ const sleep = time => new Promise(resolve => {
     await page.click('.more')
   }
 
+  // result为爬取到的数据
   const result = await page.evaluate(() => {
     var $ = window.$
     var items = $('.list-wp a')
@@ -56,5 +57,8 @@ const sleep = time => new Promise(resolve => {
 
   browser.close()
 
-  console.log(result)
+  process.send({result})
+  process.exit(0);
+
+
 })()
