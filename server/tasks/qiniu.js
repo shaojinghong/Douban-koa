@@ -35,16 +35,15 @@ const uploadToQiniu = async (url, key) => {
     if (movie.video && !movie.key) {
       try {
         console.log('开始传 video')
-        let videoData = await uploadToQiniu(movie.video, nanoid() + '.mp4')
+        // let videoData = await uploadToQiniu(movie.video, nanoid() + '.mp4')
         console.log('开始传 cover')
         let coverData = await uploadToQiniu(movie.cover, nanoid() + '.png')
         console.log('开始传 poster')
         let posterData = await uploadToQiniu(movie.poster, nanoid() + '.png')
 
-
-        if (videoData.key) {
-          movie.videoKey = videoData.key
-        }
+        // if (videoData.key) {
+        //   movie.videoKey = videoData.key
+        // }
         if (coverData.key) {
           movie.coverKey = coverData.key
         }
