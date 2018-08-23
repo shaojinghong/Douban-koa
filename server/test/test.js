@@ -75,7 +75,17 @@ const sleep = (time) => {
   })
 }
 
+sleep(2000).then(()=>{console.log('过了两秒钟打印');})
+
+;(async () => {
+  await sleep(2000)
+  console.log('run in 2s')
+})()
+
+/* async函数的用法
 ;(async () => {
   await sleep(2000)
   console.log('run 2s later')
 })()
+*/
+

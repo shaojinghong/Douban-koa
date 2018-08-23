@@ -31,6 +31,7 @@ const sleep = time => new Promise(resolve => {
 
   // result为爬取到的数据
   const result = await page.evaluate(() => {
+    // 调用网页里的jQuery
     var $ = window.$
     var items = $('.list-wp a')
     var links = []
