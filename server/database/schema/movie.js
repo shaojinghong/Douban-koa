@@ -45,6 +45,7 @@ const movieSchema = new Schema({
 
 movieSchema.pre('save', function (next) {
   if (this.isNew) {
+    // this指向的是new model({...})出的实例对象
     this.meta.createdAt = this.meta.updatedAt = Date.now()
   } else {
     this.meta.updatedAt = Date.now()
@@ -55,3 +56,4 @@ movieSchema.pre('save', function (next) {
 
 
 mongoose.model('Movie', movieSchema)
+ 
