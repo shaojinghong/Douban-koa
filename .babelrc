@@ -4,6 +4,10 @@
       "targets": {
         "node": "current"
       }
-    }]
-  ]
+    }], "stage-0", "react"],
+    "plugins": [
+      "transform-runtime",
+      "transform-decorators-legacy",
+      "transform-class-properties"
+    ]
 }

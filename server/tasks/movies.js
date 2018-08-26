@@ -1,6 +1,7 @@
 const childProcess = require('child_process')
 const path = require('path')
-
+const mongoose = require('mongoose')
+const Movie = mongoose.model('Movie')
 
 
 ;(async () => {
@@ -30,8 +31,28 @@ const path = require('path')
   // 当一个子进程使用 process.send() 发送消息时会触发 'message' 事件。
   child.on('message', data => {
     let result = data.result
+    /* 爬回来的是以下类型组成的数组
+    [{ doubanId: 26761328,
+    title: '天盛长歌',
+    rate: 7.5,
+    poster:
+     'https://img3.doubanio.com/view/photo/l_ratio_poster/public/p2530496815.jpg' }, ...]
+     */
+     result.forEach(async (item) => {
+        try {
+          let movie = await Movie.findOne({
+            doubanId: item.doubanId
+          })
+          if (!movie) {
+            movie = new Movie(item)  
+            await movie.save()
+          }
+        } catch (error) {
+          console.log(error)
+        }
+     })
 
-    console.log(result)
+
   })
 
 })()
