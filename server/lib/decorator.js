@@ -1,6 +1,7 @@
 const Router = require('koa-router')
 const { resolve } = require('path')
 const glob = require('glob')
+
 const routerMap = new Map()
 const symbolPrefix = Symbol('prefix')
 
@@ -23,7 +24,11 @@ const normalizePath = path => path.startsWith('/') ? path : `/${path}`
 const router = conf => (target, key, descriptor) => {
   config.path = normalizePath(conf.path)
 
-}
+  routerMap.set({
+    target: target,
+    ...conf
+  }, target[key])
+} 
 
 //类装饰器
 const controller = path => target => {
@@ -35,3 +40,13 @@ const get = path => router({
   method: 'get',
   path: path
 })
+
+R.map(
+  R.compose(
+    R.forEachObjIndexed(
+      initWith => initWith(app)
+    ),
+    require,
+    name => resolve(__dirname, `./middlewares/${name}`)
+  )
+)(MIDDLEWARES)
