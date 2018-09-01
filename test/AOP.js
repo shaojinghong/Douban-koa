@@ -1,11 +1,11 @@
 
-function fun() {
-  console.log('current function')
+function fun(str) {
+  console.log(str)
 }
 
 Function.prototype.before = function(funBe) {
   funBe()
-  this()
+  this(arguments)
   return this
 }
 
@@ -19,5 +19,5 @@ fun = fun.before(() => {
   console.log('After function')
 })
 
-fun() //  before function, After function current function
+fun('jinghong') //  before function, After function current function
 
