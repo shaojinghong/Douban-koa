@@ -1,9 +1,8 @@
 const Koa = require('koa')
 const { resolve } = require('path')
 const { connect, initSchemas } = require('./database/init')
-const mongoose = require('mongoose')
 const R = require('ramda')
-const MIDDLEWARES = ['router']
+const MIDDLEWARES = ['router', 'parcel']
 
 ;(async() => {
 
