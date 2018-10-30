@@ -18,7 +18,7 @@ export default class LayoutDefault extends Component {
       loading: false,
       tip: '再等一下下嘛'
     }
-  },
+  }
 
   componentDidMount () {
     window.__LOADING__ = this.toggleLoading
